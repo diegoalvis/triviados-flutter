@@ -22,9 +22,13 @@ void main() {
   test("Get Trivia List Successfully", () async {
     when(mockTriviaRepository.getTriviaList()).thenAnswer((_) async => Success(testTrivias));
 
-    final result = await usecase.call();
+    final Success result = await usecase.call();
 
     expect(result, Success(testTrivias));
+    expect(result.data, testTrivias);
+
+    verify(mockTriviaRepository.getTriviaList());
+    verifyNoMoreInteractions(mockTriviaRepository);
   });
 
 
@@ -34,5 +38,8 @@ void main() {
     final result = await usecase.call();
 
     expect(result, CustomError());
+
+    verify(mockTriviaRepository.getTriviaList());
+    verifyNoMoreInteractions(mockTriviaRepository);
   });
 }
