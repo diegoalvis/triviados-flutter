@@ -1,6 +1,6 @@
 import 'package:triviados/core/error/exceptions.dart';
 import 'package:triviados/core/error/failures.dart';
-import 'package:triviados/core/network_status.dart';
+import 'package:triviados/core/network/network_status.dart';
 import 'package:triviados/core/result.dart';
 import 'package:triviados/data/api/trivia_remote_data_source.dart';
 import 'package:triviados/data/local/trivia_loca_data_source.dart';
