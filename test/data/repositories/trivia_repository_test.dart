@@ -35,6 +35,7 @@ void main() {
     triviaRepository = TriviaRepositoryImpl(networkStatus, remoteDataSource, localDataSource);
   });
 
+  // DEVICE IS ONLINE
   group('Online mode', () {
     final triviaList = generateTestTriviaModelList();
 
@@ -80,6 +81,7 @@ void main() {
   });
 
 
+  // DEVICE IS OFFLINE
   group('Offline mode', () {
     final triviaList = generateTestTriviaModelList();
 
