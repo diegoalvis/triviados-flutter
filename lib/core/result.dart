@@ -14,9 +14,3 @@ class CustomError extends Equatable implements Result {
 
   CustomError([this.exception]) : super();
 }
-
-class ServiceError extends CustomError {
-  final int code;
-
-  ServiceError(this.code, Exception exception) : super(exception);
-}

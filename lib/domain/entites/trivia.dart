@@ -5,7 +5,6 @@ class Trivia {
   String correctAnswer;
   List<String> incorrectAnswers;
 
-
   Trivia(this.question, this.correctAnswer, this.incorrectAnswers);
 
   Trivia.fromModel(TriviaModel model, this.question) {

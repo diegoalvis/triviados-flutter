@@ -22,7 +22,7 @@ void main() {
   test("Get Trivia List Successfully", () async {
     when(mockTriviaRepository.getTriviaList()).thenAnswer((_) async => Success(testTrivias));
 
-    final Success result = await usecase.call();
+    final Success result = await usecase();
 
     expect(result, Success(testTrivias));
     expect(result.data, testTrivias);
@@ -35,7 +35,7 @@ void main() {
   test("Get Trivia List Error", () async {
     when(mockTriviaRepository.getTriviaList()).thenAnswer((_) async => CustomError());
 
-    final result = await usecase.call();
+    final result = await usecase();
 
     expect(result, CustomError());
 
