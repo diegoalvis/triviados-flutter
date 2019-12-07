@@ -12,5 +12,5 @@ class Success<T> extends Equatable implements Result {
 class CustomError extends Equatable implements Result {
   final Exception exception;
 
-  CustomError([this.exception]) : super();
+  CustomError({this.exception}) : super([exception]);
 }

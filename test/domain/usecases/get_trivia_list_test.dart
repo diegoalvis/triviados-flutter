@@ -1,9 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:triviados/core/error/exceptions.dart';
 import 'package:triviados/core/result.dart';
-import 'package:triviados/domain/entites/trivia.dart';
 import 'package:triviados/domain/repositories/trivia_repository.dart';
 import 'package:triviados/domain/usecases/get_trivia_list.dart';
+
+import '../../utils/test_data_generator.dart';
 
 /// Mock class of [TriviaRepository]
 class MockTriviaRepository extends Mock implements TriviaRepository {}
@@ -17,18 +19,17 @@ void main() {
     usecase = GetTriviaList(mockTriviaRepository);
   });
 
-  final List<Trivia> testTrivias = List.generate(10, (i) => Trivia("q $i", "answer $i", ["error 1", "error 2", "error 3"]));
-
   test("Get Trivia List Successfully", () async {
-    when(mockTriviaRepository.getTriviaList()).thenAnswer((_) async => Success(testTrivias));
+    final triviaList = generateTestTriviaList();
+    when(mockTriviaRepository.getTriviaList()).thenAnswer((_) async => Success(triviaList));
 
     final Success result = await usecase();
 
-    expect(result, Success(testTrivias));
-    expect(result.data, testTrivias);
-
     verify(mockTriviaRepository.getTriviaList());
     verifyNoMoreInteractions(mockTriviaRepository);
+
+    expect(result, Success(triviaList));
+    expect(result.data, triviaList);
   });
 
 
@@ -37,9 +38,9 @@ void main() {
 
     final result = await usecase();
 
-    expect(result, CustomError());
-
     verify(mockTriviaRepository.getTriviaList());
     verifyNoMoreInteractions(mockTriviaRepository);
+
+    expect(result, equals(CustomError()));
   });
 }
