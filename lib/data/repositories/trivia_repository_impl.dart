@@ -22,7 +22,7 @@ class TriviaRepositoryImpl extends TriviaRepository {
         return Success(remoteTriviaList);
       } on ServerException {
         return _getLocalData();
-      } catch(e) {
+      } catch (e) {
         return ServerFailure();
       }
     } else {
