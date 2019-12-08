@@ -25,35 +25,32 @@ class _GameBoardPageState extends State<GameBoardPage> {
   @override
   void initState() {
     super.initState();
-  }
-
-  FutureBuilder buildTriviaList() {
     TriviaRepository repository =
         TriviaRepositoryImpl(NetworkStatus(DataConnectionChecker()), TriviaRemoteDataSourceImpl(), TriviaLocalDataSourceImpl());
     GetTriviaList usecase = GetTriviaList(repository);
-    return FutureBuilder(
-      future: usecase(),
-      builder: (context, repoSnap) {
-        if (repoSnap.connectionState == ConnectionState.none || repoSnap.hasData == false) {
-          return Center(child: Text("No data"));
-        }
-
-        triviaList = (repoSnap.data as Success<List<Trivia>>).data;
+    usecase().then((list) {
+      setState(() {
+        triviaList = (list as Success<List<Trivia>>).data;
         currentTrivia = triviaList.first;
+      });
+    });
+  }
 
-        return Column(
-          children: <Widget>[
-            Expanded(child: Center(child: Text(currentTrivia.question))),
-            Center(child: Text(currentTrivia.correctAnswer)),
-            Expanded(
-                child: ListView.builder(
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return Center(child: Text(currentTrivia.incorrectAnswers[index]));
-                    })),
-          ],
-        );
-      },
+  Widget buildTriviaList() {
+    if (triviaList == null) {
+      return Center(child: Text("No data"));
+    }
+    return Column(
+      children: <Widget>[
+        Expanded(child: Center(child: Text(currentTrivia.question))),
+        Center(child: Text(currentTrivia.correctAnswer)),
+        Expanded(
+            child: ListView.builder(
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Center(child: Text(currentTrivia.incorrectAnswers[index]));
+                })),
+      ],
     );
   }
 
@@ -64,15 +61,17 @@ class _GameBoardPageState extends State<GameBoardPage> {
         title: Text(widget.title),
       ),
       body: Center(child: buildTriviaList()),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            int pos = ((triviaList.indexOf(currentTrivia) + 1) % triviaList.length) ?? 0;
-            currentTrivia = triviaList[pos];
-          });
-        },
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: triviaList == null
+          ? null
+          : FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  int pos = ((triviaList.indexOf(currentTrivia) + 1) % triviaList.length) ?? 0;
+                  currentTrivia = triviaList[pos];
+                });
+              },
+              child: Icon(Icons.navigate_next),
+            ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
