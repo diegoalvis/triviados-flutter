@@ -1,7 +1,11 @@
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:triviados/data/local/trivia_loca_data_source.dart';
 import 'package:triviados/data/models/trivia_model.dart';
 
 class TriviaLocalDataSourceImpl implements TriviaLocalDataSource {
+  final SharedPreferences preferences;
+
+  TriviaLocalDataSourceImpl(this.preferences);
 
   @override
   Future saveTriviaList(List<TriviaModel> triviaList) {
@@ -11,13 +15,7 @@ class TriviaLocalDataSourceImpl implements TriviaLocalDataSource {
 
   @override
   Future<List<TriviaModel>> getTriviaList() {
-    final lastTriviaList =generateTestTriviaModelList();
-    return Future.value(lastTriviaList);
+    // TODO: implement
+    return null;
   }
 }
-
-/// Method should be removed *testing purposes*
-List<TriviaModel> generateTestTriviaModelList() {
-  return List.generate(10, (i) => TriviaModel("q $i", "answer $i", ["error 1", "error 2", "error 3"]));
-}
-

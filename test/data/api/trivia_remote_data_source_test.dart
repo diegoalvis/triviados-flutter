@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:matcher/matcher.dart';
+import 'package:mockito/mockito.dart';
 import 'package:triviados/core/error/exceptions.dart';
+import 'package:triviados/data/api/trivia_remote_data_source.dart';
 import 'package:triviados/data/api/trivia_remote_data_source_impl.dart';
 import 'package:triviados/data/models/trivia_model.dart';
 
@@ -13,7 +15,7 @@ import 'package:triviados/data/models/trivia_model.dart';
 class MockDio extends Mock implements Dio {}
 
 void main() {
-  TriviaRemoteDataSourceImpl remoteDataSource;
+  TriviaRemoteDataSource remoteDataSource;
 
   // Objects to be mocked
   Dio dio;
@@ -25,14 +27,6 @@ void main() {
 
   final mockResponse = File("test/data/api/responses/trivia_list.json").readAsStringSync();
 
-  test("Should preform a GET request on a URL", () async {
-    when(dio.get("/", queryParameters: anyNamed("queryParameters")))
-        .thenAnswer((_) async => Response());
-
-    remoteDataSource.getTriviaList();
-
-    verify(dio.get("/", queryParameters: anyNamed("queryParameters")));
-  });
 
   test('Should return List of Trivias when the response code is 200 (success)', () async {
     final triviaList = await compute<List<Map<String, dynamic>>, List<TriviaModel>>(
