@@ -5,29 +5,33 @@ import 'package:triviados/data/api/trivia_remote_data_source.dart';
 import 'package:triviados/data/models/trivia_model.dart';
 
 class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
-  // TODO should be injected
-  Dio _dio;
+  final Dio _dio;
 
-  TriviaRemoteDataSourceImpl() {
-    _dio = Dio(BaseOptions(
-      baseUrl: "https://opentdb.com/api.php",
-      connectTimeout: 5000,
-      receiveTimeout: 3000,
-    ));
-  }
+  TriviaRemoteDataSourceImpl(this._dio);
+
+//    _dio = Dio(BaseOptions(
+//      baseUrl: "https://opentdb.com/api.php",
+//      connectTimeout: 5000,
+//      receiveTimeout: 3000,
+//    ));
 
   @override
   Future<List<TriviaModel>> getTriviaList() async {
-    return await _dio.get<Map<String, dynamic>>("/", queryParameters: {"amount": 10, "type": "multiple"}).then((response) async {
+    final response = await _dio.get("/", queryParameters: {"amount": 10, "type": "multiple"});
+
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       List<TriviaModel> data;
       if (response.data["results"] != null) {
         data = await compute<List<Map<String, dynamic>>, List<TriviaModel>>(
             parseTriviaList, (response.data["results"] as List).cast<Map<String, dynamic>>());
       }
       return data;
-    }).catchError((error) => ServerException());
+    } else {
+      throw ServerException();
+    }
   }
 }
 
+// Isolate function to parse list
 List<TriviaModel> parseTriviaList(List<Map<String, dynamic>> json) =>
     json.map((element) => TriviaModel.fromJson(element)).toList();

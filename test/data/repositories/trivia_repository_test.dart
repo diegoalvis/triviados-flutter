@@ -15,7 +15,7 @@ import '../../utils/test_data_generator.dart';
 class MockTriviaRemoteDataSource extends Mock implements TriviaRemoteDataSource {}
 
 /// Mock class of [TriviaLocalDataSource]
-class MockTriviaKLocalDataSource extends Mock implements TriviaLocalDataSource {}
+class MockTriviaLocalDataSource extends Mock implements TriviaLocalDataSource {}
 
 /// Mock class of [NetworkStatus]
 class MockNetworkStatus extends Mock implements NetworkStatus {}
@@ -24,13 +24,13 @@ void main() {
   TriviaRepository triviaRepository;
 
   // Objects to be mocked
-  MockTriviaRemoteDataSource remoteDataSource;
-  MockTriviaKLocalDataSource localDataSource;
-  MockNetworkStatus networkStatus;
+  TriviaRemoteDataSource remoteDataSource;
+  TriviaLocalDataSource localDataSource;
+  NetworkStatus networkStatus;
 
   setUp(() {
     remoteDataSource = MockTriviaRemoteDataSource();
-    localDataSource = MockTriviaKLocalDataSource();
+    localDataSource = MockTriviaLocalDataSource();
     networkStatus = MockNetworkStatus();
     triviaRepository = TriviaRepositoryImpl(networkStatus, remoteDataSource, localDataSource);
   });

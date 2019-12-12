@@ -25,15 +25,15 @@ class _GameBoardPageState extends State<GameBoardPage> {
   @override
   void initState() {
     super.initState();
-    TriviaRepository repository =
-        TriviaRepositoryImpl(NetworkStatus(DataConnectionChecker()), TriviaRemoteDataSourceImpl(), TriviaLocalDataSourceImpl());
-    GetTriviaList usecase = GetTriviaList(repository);
-    usecase().then((list) {
-      setState(() {
-        triviaList = (list as Success<List<Trivia>>).data;
-        currentTrivia = triviaList.first;
-      });
-    });
+//    TriviaRepository repository =
+//        TriviaRepositoryImpl(NetworkStatus(DataConnectionChecker()), TriviaRemoteDataSourceImpl(DIo()), TriviaLocalDataSourceImpl());
+//    GetTriviaList usecase = GetTriviaList(repository);
+//    usecase().then((list) {
+//      setState(() {
+//        triviaList = (list as Success<List<Trivia>>).data;
+//        currentTrivia = triviaList.first;
+//      });
+//    });
   }
 
   Widget buildTriviaList() {

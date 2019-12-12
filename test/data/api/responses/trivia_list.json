@@ -1,0 +1,125 @@
+{
+  "response_code": "0",
+  "results": [
+    {
+      "category": "Science & Nature",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which chemical element has the lowest boiling point?",
+      "correct_answer": "Helium",
+      "incorrect_answers": [
+        "Hydrogen",
+        "Neon",
+        "Nitrogen"
+      ]
+    },
+    {
+      "category": "General Knowledge",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What geometric shape is generally used for stop signs?",
+      "correct_answer": "Octagon",
+      "incorrect_answers": [
+        "Hexagon",
+        "Circle",
+        "Triangle"
+      ]
+    },
+    {
+      "category": "Mythology",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "The greek god Poseidon was the god of what?",
+      "correct_answer": "The Sea",
+      "incorrect_answers": [
+        "War",
+        "Sun",
+        "Fire"
+      ]
+    },
+    {
+      "category": "Entertainment: Books",
+      "type": "multiple",
+      "difficulty": "easy",
+      "question": "What is the name of the three headed dog in Harry Potter and the Sorcerer&#039;s Stone?",
+      "correct_answer": "Fluffy",
+      "incorrect_answers": [
+        "Spike",
+        "Poofy",
+        "Spot"
+      ]
+    },
+    {
+      "category": "Entertainment: Musicals & Theatres",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "In Macbeth, the eyes of what animals were used in the Witches&#039; cauldron?",
+      "correct_answer": "Newts",
+      "incorrect_answers": [
+        "Humans",
+        "Sharks",
+        "Squids"
+      ]
+    },
+    {
+      "category": "Entertainment: Music",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "How many members are in the Japanese rock band SCANDAL?",
+      "correct_answer": "4",
+      "incorrect_answers": [
+        "5",
+        "2",
+        "18"
+      ]
+    },
+    {
+      "category": "Entertainment: Books",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Which of these book series is by James Patterson?",
+      "correct_answer": "Maximum Ride",
+      "incorrect_answers": [
+        "Harry Potter",
+        "The Legend of Xanth",
+        "The Bartemaeus Trilogy"
+      ]
+    },
+    {
+      "category": "Entertainment: Video Games",
+      "type": "multiple",
+      "difficulty": "hard",
+      "question": "What Pok&eacute;mon&#039;s Base Stat Total does not change when it evolves?",
+      "correct_answer": "Scyther",
+      "incorrect_answers": [
+        "Pikachu",
+        "Sneasel",
+        "Larvesta"
+      ]
+    },
+    {
+      "category": "Science & Nature",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "Down Syndrome is usually caused by an extra copy of which chromosome?",
+      "correct_answer": "21",
+      "incorrect_answers": [
+        "23",
+        "15",
+        "24"
+      ]
+    },
+    {
+      "category": "General Knowledge",
+      "type": "multiple",
+      "difficulty": "medium",
+      "question": "A statue of Charles Darwin sits in what London museum?",
+      "correct_answer": "Natural History Museum",
+      "incorrect_answers": [
+        "Tate",
+        "British Museum",
+        "Science Museum"
+      ]
+    }
+  ]
+}

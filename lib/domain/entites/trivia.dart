@@ -1,9 +1,9 @@
+import 'package:equatable/equatable.dart';
 
+class Trivia extends Equatable {
+  final String question;
+  final String correctAnswer;
+  final List<String> incorrectAnswers;
 
-class Trivia {
-  String question;
-  String correctAnswer;
-  List<String> incorrectAnswers;
-
-  Trivia(this.question, this.correctAnswer, this.incorrectAnswers);
+  Trivia(this.question, this.correctAnswer, this.incorrectAnswers) : super([question, correctAnswer, incorrectAnswers]);
 }
