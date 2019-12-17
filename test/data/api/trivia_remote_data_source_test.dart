@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:matcher/matcher.dart';
 import 'package:mockito/mockito.dart';
 import 'package:triviados/core/error/exceptions.dart';
-import 'package:triviados/data/api/trivia_remote_data_source.dart';
+import 'package:triviados/data/api/api_url.dart';
 import 'package:triviados/data/api/trivia_remote_data_source_impl.dart';
 import 'package:triviados/data/models/trivia_model.dart';
 
@@ -15,7 +15,7 @@ import 'package:triviados/data/models/trivia_model.dart';
 class MockDio extends Mock implements Dio {}
 
 void main() {
-  TriviaRemoteDataSource remoteDataSource;
+  TriviaRemoteDataSourceImpl remoteDataSource;
 
   // Objects to be mocked
   Dio dio;
@@ -32,7 +32,7 @@ void main() {
     final triviaList = await compute<List<Map<String, dynamic>>, List<TriviaModel>>(
         parseTriviaList, (json.decode(mockResponse)["results"] as List).cast<Map<String, dynamic>>());
 
-    when(dio.get(any, queryParameters: anyNamed("queryParameters")))
+    when(dio.get(getTriviaPath, queryParameters: anyNamed("queryParameters")))
         .thenAnswer((_) async => Response(data: json.decode(mockResponse), statusCode: 200));
 
     final result = await remoteDataSource.getTriviaList();
@@ -41,7 +41,7 @@ void main() {
   });
 
   test('Should return ServerException when the response code is 404 (not found)', () async {
-    when(dio.get(any, queryParameters: anyNamed("queryParameters")))
+    when(dio.get(getTriviaPath, queryParameters: anyNamed("queryParameters")))
         .thenAnswer((_) async => Response(data: "Something went wrong.", statusCode: 404));
 
     final apiCall = remoteDataSource.getTriviaList;

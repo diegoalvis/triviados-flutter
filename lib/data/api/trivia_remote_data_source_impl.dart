@@ -4,6 +4,8 @@ import 'package:triviados/core/error/exceptions.dart';
 import 'package:triviados/data/api/trivia_remote_data_source.dart';
 import 'package:triviados/data/models/trivia_model.dart';
 
+import 'api_url.dart';
+
 class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
   final Dio _dio;
 
@@ -17,7 +19,7 @@ class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
 
   @override
   Future<List<TriviaModel>> getTriviaList() async {
-    final response = await _dio.get("/", queryParameters: {"amount": 10, "type": "multiple"});
+    final response = await _dio.get(getTriviaPath, queryParameters: {"amount": 10, "type": "multiple"});
 
     if (response.statusCode >= 200 && response.statusCode < 300) {
       List<TriviaModel> data;

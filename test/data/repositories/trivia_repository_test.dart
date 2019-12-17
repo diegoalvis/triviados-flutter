@@ -69,7 +69,7 @@ void main() {
 
     test("should local data if there is a failure accessing to the data from the remote source", () async {
       when(remoteDataSource.getTriviaList()).thenThrow(ServerException());
-      when(localDataSource.getTriviaList()).thenAnswer((_) async => triviaList);
+      when(localDataSource.getTriviaList()).thenReturn(triviaList);
 
       final result = await triviaRepository.getTriviaList();
 
@@ -90,7 +90,7 @@ void main() {
     });
 
     test("should return data from the local source", () async {
-      when(localDataSource.getTriviaList()).thenAnswer((_) async => triviaList);
+      when(localDataSource.getTriviaList()).thenReturn(triviaList);
 
       final result = await triviaRepository.getTriviaList();
 
