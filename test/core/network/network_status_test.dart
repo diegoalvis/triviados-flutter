@@ -7,6 +7,8 @@ class MockDataConnectionChecker extends Mock implements DataConnectionChecker {}
 
 void main() {
   NetworkStatus networkStatus;
+
+  // Objects to be mocked
   MockDataConnectionChecker mockDataConnectionChecker;
 
   setUp(() {
@@ -14,19 +16,17 @@ void main() {
     networkStatus = NetworkStatus(mockDataConnectionChecker);
   });
 
-  group('isConnected', () {
-    test(
-      'should forward the DataConnectionChecker.hasConnection call',
-      () async {
-        final tHasConnectionFuture = Future.value(true);
+  test(
+    'should forward the DataConnectionChecker.hasConnection call',
+    () async {
+      final tHasConnectionFuture = Future.value(true);
 
-        when(mockDataConnectionChecker.hasConnection).thenAnswer((_) => tHasConnectionFuture);
+      when(mockDataConnectionChecker.hasConnection).thenAnswer((_) => tHasConnectionFuture);
 
-        final result = networkStatus.isConnected;
+      final result = networkStatus.isConnected;
 
-        verify(mockDataConnectionChecker.hasConnection);
-        expect(result, tHasConnectionFuture);
-      },
-    );
-  });
+      verify(mockDataConnectionChecker.hasConnection);
+      expect(result, tHasConnectionFuture);
+    },
+  );
 }

@@ -12,8 +12,8 @@ dependencies:
 
   equatable: ^0.4.0
   dependencies_flutter: ^0.1.6
-  bloc: ^2.0.0
-  flutter_bloc: ^2.1.1
+  flutter_bloc: ^3.0.0-dev.1
+  bloc: ^3.0.0-dev.1
   dio: ^3.0.7
   http: ^0.12.0+2
   data_connection_checker: ^0.3.4
@@ -27,6 +27,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^4.1.0
+  bloc_test: ^3.0.0-dev.1
 
 
 # The following section is specific to Flutter.

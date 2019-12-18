@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:triviados/core/error/exceptions.dart';
 import 'package:triviados/core/result.dart';
 import 'package:triviados/domain/repositories/trivia_repository.dart';
 import 'package:triviados/domain/usecases/get_trivia_list.dart';
