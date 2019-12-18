@@ -23,7 +23,7 @@ void main() {
     localDataSource = TriviaLocalDataSourceImpl(preferences);
   });
 
-  final triviaList = generateTestTriviaModelList();
+  final triviaList = generateTestTriviaModelList(6);
 
   test("Should return a cached trivia list from ShredPreferences", () async {
     when(preferences.get(TriviaLocalDataSourceImpl.TRIVIA_KEY)).thenReturn(triviaList);

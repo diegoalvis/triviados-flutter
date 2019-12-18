@@ -19,16 +19,16 @@ void main() {
   });
 
   test("Get Trivia List Successfully", () async {
-    final triviaList = generateTestTriviaList();
+    final triviaList = generateTestTriviaList(7);
     when(mockTriviaRepository.getTriviaList()).thenAnswer((_) async => Success(triviaList));
 
-    final Success result = await usecase();
+    final result = await usecase();
 
     verify(mockTriviaRepository.getTriviaList());
     verifyNoMoreInteractions(mockTriviaRepository);
 
     expect(result, Success(triviaList));
-    expect(result.data, triviaList);
+    expect((result as Success).data, triviaList);
   });
 
 

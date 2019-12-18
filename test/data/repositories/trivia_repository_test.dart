@@ -37,7 +37,7 @@ void main() {
 
   // DEVICE IS ONLINE
   group('Online mode', () {
-    final triviaList = generateTestTriviaModelList();
+    final triviaList = generateTestTriviaModelList(4);
 
     setUp(() {
       when(networkStatus.isConnected).thenAnswer((_) async => true);
@@ -83,7 +83,7 @@ void main() {
 
   // DEVICE IS OFFLINE
   group('Offline mode', () {
-    final triviaList = generateTestTriviaModelList();
+    final triviaList = generateTestTriviaModelList(9);
 
     setUp(() {
       when(networkStatus.isConnected).thenAnswer((_) async => false);
