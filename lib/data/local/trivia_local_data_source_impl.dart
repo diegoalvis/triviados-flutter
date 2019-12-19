@@ -8,20 +8,19 @@ import 'package:triviados/data/models/trivia_model.dart';
 class TriviaLocalDataSourceImpl implements TriviaLocalDataSource {
   static const String TRIVIA_KEY = "trivias";
 
-  final SharedPreferences preferences;
+  final Future<SharedPreferences> preferences;
 
   TriviaLocalDataSourceImpl(this.preferences);
 
   @override
-  Future saveTriviaList(List<TriviaModel> triviaList) {
+  Future saveTriviaList(List<TriviaModel> triviaList) async {
     final data = json.encode(triviaList);
-    preferences.setString(TRIVIA_KEY, data);
-    return null;
+    return (await preferences).setString(TRIVIA_KEY, data);
   }
 
   @override
-  List<TriviaModel> getTriviaList() {
-    final data = preferences.get(TRIVIA_KEY);
+  Future<List<TriviaModel>> getTriviaList() async {
+    final data = (await preferences).get(TRIVIA_KEY);
     if (data != null) {
       return data as List<TriviaModel>;
     } else {

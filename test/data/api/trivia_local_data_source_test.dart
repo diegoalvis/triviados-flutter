@@ -20,7 +20,7 @@ void main() {
 
   setUp(() {
     preferences = MockSharedPreferences();
-    localDataSource = TriviaLocalDataSourceImpl(preferences);
+    localDataSource = TriviaLocalDataSourceImpl(Future.value(preferences));
   });
 
   final triviaList = generateTestTriviaModelList(6);
@@ -28,7 +28,7 @@ void main() {
   test("Should return a cached trivia list from ShredPreferences", () async {
     when(preferences.get(TriviaLocalDataSourceImpl.TRIVIA_KEY)).thenReturn(triviaList);
 
-    final result = localDataSource.getTriviaList();
+    final result = await localDataSource.getTriviaList();
 
     expect(result, triviaList);
   });
@@ -42,7 +42,7 @@ void main() {
   });
 
   test('Should call SharedPreferences to save the data locally', () async {
-    localDataSource.saveTriviaList(triviaList);
+    await localDataSource.saveTriviaList(triviaList);
 
     verify(preferences.setString(TriviaLocalDataSourceImpl.TRIVIA_KEY, json.encode(triviaList)));
   });

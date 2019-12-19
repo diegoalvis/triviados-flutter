@@ -57,7 +57,6 @@ void main() {
       expect(result, Success(triviaList));
     });
 
-
     test("should save locally the returned data from the remote source", () async {
       when(remoteDataSource.getTriviaList()).thenAnswer((_) async => triviaList);
 
@@ -69,7 +68,7 @@ void main() {
 
     test("should local data if there is a failure accessing to the data from the remote source", () async {
       when(remoteDataSource.getTriviaList()).thenThrow(ServerException());
-      when(localDataSource.getTriviaList()).thenReturn(triviaList);
+      when(localDataSource.getTriviaList()).thenAnswer((_) async => triviaList);
 
       final result = await triviaRepository.getTriviaList();
 
@@ -80,7 +79,6 @@ void main() {
     });
   });
 
-
   // DEVICE IS OFFLINE
   group('Offline mode', () {
     final triviaList = generateTestTriviaModelList(9);
@@ -90,7 +88,7 @@ void main() {
     });
 
     test("should return data from the local source", () async {
-      when(localDataSource.getTriviaList()).thenReturn(triviaList);
+      when(localDataSource.getTriviaList()).thenAnswer((_) async => triviaList);
 
       final result = await triviaRepository.getTriviaList();
 
@@ -98,7 +96,6 @@ void main() {
       verifyNoMoreInteractions(remoteDataSource);
       expect(result, Success(triviaList));
     });
-
 
     test("should return cache failure when there is no data stored locally", () async {
       when(localDataSource.getTriviaList()).thenThrow(CacheException());

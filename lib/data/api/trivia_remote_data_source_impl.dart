@@ -11,12 +11,6 @@ class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
 
   TriviaRemoteDataSourceImpl(this._dio);
 
-//    _dio = Dio(BaseOptions(
-//      baseUrl: "https://opentdb.com/api.php",
-//      connectTimeout: 5000,
-//      receiveTimeout: 3000,
-//    ));
-
   @override
   Future<List<TriviaModel>> getTriviaList() async {
     final response = await _dio.get(getTriviaPath, queryParameters: {"amount": 10, "type": "multiple"});
