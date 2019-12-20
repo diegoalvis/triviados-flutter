@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class HomeWidget extends StatelessWidget {
+
+  final Function onStart;
+
+  const HomeWidget({Key key, this.onStart}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,11 +63,11 @@ class HomeWidget extends StatelessWidget {
                 child: RaisedButton(
                   color: Colors.orange.shade400,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
+                  onPressed: onStart,
                   child: Text(
                     "Empezar",
                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 18),
                   ),
-                  onPressed: () {},
                 ),
               )),
           SizedBox(

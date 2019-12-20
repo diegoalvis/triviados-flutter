@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
           title: 'Triviados',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primaryColor: Color(0xffff3a5a),
+            accentColor: Color(0xffff3a5a),
           ),
-          home: SafeArea(child: GameBoardPage(title: 'Flutter Demo Clean Arquitecture')),
+          home: Scaffold(body: SafeArea(child: GameBoardPage())),
         ));
   }
 }
