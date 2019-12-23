@@ -6,6 +6,7 @@ import 'package:triviados/presentation/bloc/gameboard_bloc.dart';
 import 'package:triviados/presentation/bloc/gameboard_event.dart';
 import 'package:triviados/presentation/bloc/gameboard_state.dart';
 import 'package:triviados/presentation/widgets/home_widget.dart';
+import 'package:triviados/presentation/widgets/question_page.dart';
 
 class GameBoardPage extends StatefulWidget {
   GameBoardPage({Key key}) : super(key: key);
@@ -15,9 +16,6 @@ class GameBoardPage extends StatefulWidget {
 }
 
 class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin {
-  GameBoardBloc _bloc;
-
-  _GameBoardPageState();
 
   @override
   void initState() {
@@ -26,7 +24,7 @@ class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin 
 
   @override
   Widget buildWithInjector(BuildContext context, Injector injector) {
-    _bloc = GameBoardBloc(injector.get());
+    GameBoardBloc _bloc = GameBoardBloc(injector.get());
     return Scaffold(
       body: buildBody(_bloc),
     );
@@ -44,6 +42,14 @@ class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin 
 
         if (state is LoadingState) {
           return Center(child: CircularProgressIndicator());
+        }
+
+        if(state is TriviasLoaded) {
+          bloc.add(NextQuestionEvent());
+        }
+
+        if(state is AnswerSelected || state is ShowTrivia) {
+          return QuestionPage(trivia: state.trivia, onOptionSelected: (option) => bloc.add(OptionSelectedEvent(option)));
         }
 
         return Center();

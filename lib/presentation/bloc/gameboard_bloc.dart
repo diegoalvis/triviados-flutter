@@ -23,10 +23,11 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
     if (event is PlayEvent) {
       yield LoadingState();
       yield* _failureOrTriviaList();
-    } else if (event is NextEvent) {
+    } else if (event is NextQuestionEvent) {
       yield ShowTrivia(triviaList.elementAt((currentTriviaIndex + 1) % triviaList.length));
-    } else if (event is TriviaOptionSelectedEvent) {
-      yield* _validateTriviaAnswer(event);
+    } else if (event is OptionSelectedEvent) {
+      triviaList.elementAt(currentTriviaIndex).optionSelected = event.answer;
+      yield AnswerSelected(triviaList.elementAt(currentTriviaIndex));
     } else if (event is FinishGameEvent) {
       yield GameFinished(_calculateScore());
     } else if (event is ExitGameEvent) {
@@ -39,6 +40,7 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
   Stream<TriviaState> _failureOrTriviaList() async* {
     final result = await getTriviaList.call();
     if (result is Success<List<Trivia>>) {
+      triviaList = result.data;
       yield TriviasLoaded(result.data.first);
     } else {
       String errorMessage = "Somethig went wrong. Plese try again.";
@@ -51,13 +53,6 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
     }
   }
 
-  Stream<TriviaState> _validateTriviaAnswer(TriviaOptionSelectedEvent event) async* {
-    if (event.answer == triviaList.elementAt(currentTriviaIndex).correctAnswer) {
-      yield CorrectAnswer();
-    } else {
-      yield IncorrectAnswer();
-    }
-  }
 
   int _calculateScore() {
     return ((correctCount / triviaList.length) * 100).toInt();

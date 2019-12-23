@@ -69,7 +69,7 @@ void main() {
         return gameBoardBloc;
       },
       act: (bloc) {
-        return bloc.add(NextEvent());
+        return bloc.add(NextQuestionEvent());
       },
       expect: [InitialState(), ShowTrivia(triviaList[2])],
     );
@@ -82,9 +82,9 @@ void main() {
       },
       act: (bloc) {
         final answer = triviaList.elementAt(bloc.currentTriviaIndex).correctAnswer;
-        return bloc.add(TriviaOptionSelectedEvent(answer));
+        return bloc.add(OptionSelectedEvent(answer));
       },
-      expect: [InitialState(), CorrectAnswer()],
+      expect: [InitialState(), AnswerSelected()],
     );
 
     blocTest(
@@ -95,7 +95,7 @@ void main() {
       },
       act: (bloc) {
         final answer = triviaList.elementAt(gameBoardBloc.currentTriviaIndex).incorrectAnswers.first;
-        return bloc.add(TriviaOptionSelectedEvent(answer));
+        return bloc.add(OptionSelectedEvent(answer));
       },
       expect: [InitialState(), IncorrectAnswer()],
     );

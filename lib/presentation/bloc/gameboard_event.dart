@@ -9,13 +9,13 @@ abstract class GameEvent extends Equatable {
 
 class PlayEvent extends GameEvent {}
 
-class TriviaOptionSelectedEvent extends GameEvent {
+class OptionSelectedEvent extends GameEvent {
   final String answer;
 
-  TriviaOptionSelectedEvent(this.answer);
+  OptionSelectedEvent(this.answer);
 }
 
-class NextEvent extends GameEvent {}
+class NextQuestionEvent extends GameEvent {}
 
 class FinishGameEvent extends GameEvent {}
 

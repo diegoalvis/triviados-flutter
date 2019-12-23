@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:triviados/domain/entites/trivia.dart';
 
-
 /// States
 @immutable
 abstract class TriviaState extends Equatable {
@@ -22,12 +21,14 @@ class TriviasLoaded extends TriviaState {
 class ShowTrivia extends TriviaState {
   final Trivia trivia;
 
-  ShowTrivia(this.trivia) : super([trivia]);
+  ShowTrivia(this.trivia) : super([trivia.question]);
 }
 
-class CorrectAnswer extends TriviaState {}
+class AnswerSelected extends TriviaState {
+  final Trivia trivia;
 
-class IncorrectAnswer extends TriviaState {}
+  AnswerSelected(this.trivia): super([trivia.optionSelected]);
+}
 
 class ErrorState extends TriviaState {
   ErrorState({String message}) : super([message]);

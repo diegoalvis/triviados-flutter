@@ -5,5 +5,7 @@ class Trivia extends Equatable {
   final String correctAnswer;
   final List<String> incorrectAnswers;
 
+  String optionSelected;
+
   Trivia(this.question, this.correctAnswer, this.incorrectAnswers) : super([question, correctAnswer, incorrectAnswers]);
 }
