@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:triviados/presentation/bloc/gameboard_bloc.dart';
 import 'package:triviados/presentation/bloc/gameboard_event.dart';
 import 'package:triviados/presentation/bloc/gameboard_state.dart';
+import 'package:triviados/presentation/widgets/PrimaryButton.dart';
 import 'package:triviados/presentation/widgets/home_widget.dart';
 import 'package:triviados/presentation/widgets/question_page.dart';
 
@@ -16,7 +17,6 @@ class GameBoardPage extends StatefulWidget {
 }
 
 class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin {
-
   @override
   void initState() {
     super.initState();
@@ -31,29 +31,46 @@ class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin 
   }
 
   Widget buildBody(GameBoardBloc bloc) {
-    return BlocBuilder(
-      bloc: bloc,
-      builder: (context, state) {
-        if (state is InitialState) {
-          return HomeWidget(
-            onStart: () => bloc.add(PlayEvent()),
-          );
-        }
+    return Scaffold(
+      body: BlocBuilder(
+        bloc: bloc,
+        builder: (context, state) {
+          if (state is InitialState) {
+            return HomeWidget(
+              onStart: () => bloc.add(PlayEvent()),
+            );
+          }
 
-        if (state is LoadingState) {
-          return Center(child: CircularProgressIndicator());
-        }
+          if (state is LoadingState) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-        if(state is TriviasLoaded) {
-          bloc.add(NextQuestionEvent());
-        }
+          if (state is TriviasLoaded) {
+            bloc.add(NextQuestionEvent());
+          }
 
-        if(state is AnswerSelected || state is ShowTrivia) {
-          return QuestionPage(trivia: state.trivia, onOptionSelected: (option) => bloc.add(OptionSelectedEvent(option)));
-        }
+          if (state is AnswerSelected || state is ShowTrivia) {
+            return Column(
+              children: <Widget>[
+                Expanded(
+                  child: QuestionPage(trivia: state.trivia, onOptionSelected: (option) => bloc.add(OptionSelectedEvent(option))),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 48.0),
+                  child: PrimaryButton(
+                      text: "Next", onPressed: state is AnswerSelected ? () => bloc.add(NextQuestionEvent()) : null),
+                ),
+              ],
+            );
+          }
 
-        return Center();
-      },
+          if (state is GameFinished) {
+            return Center(child: Text("${state.score}/100"));
+          }
+
+          return Center();
+        },
+      ),
     );
   }
 }

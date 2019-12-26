@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:triviados/presentation/widgets/PrimaryButton.dart';
 import 'package:triviados/presentation/widgets/wave_clippers.dart';
 
 class HomeWidget extends StatelessWidget {
-
   final Function onStart;
 
   const HomeWidget({Key key, this.onStart}) : super(key: key);
@@ -61,15 +61,7 @@ class HomeWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: SizedBox(
                 width: double.infinity,
-                child: RaisedButton(
-                  color: Colors.orange.shade400,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0)),
-                  onPressed: onStart,
-                  child: Text(
-                    "Empezar",
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 18),
-                  ),
-                ),
+                child: PrimaryButton(onPressed: onStart, text: "Start"),
               )),
           SizedBox(
             height: 20,
@@ -79,9 +71,10 @@ class HomeWidget extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: FlatButton(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.0), side: BorderSide(color: Colors.orange.shade400)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100.0), side: BorderSide(color: Colors.orange.shade400)),
                 child: Text(
-                  "Salir",
+                  "Exit",
                   style: TextStyle(color: Colors.orange.shade400, fontWeight: FontWeight.w700, fontSize: 18),
                 ),
                 onPressed: () {},

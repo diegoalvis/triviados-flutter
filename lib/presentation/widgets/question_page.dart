@@ -7,10 +7,9 @@ class QuestionPage extends StatelessWidget {
   static final TextStyle _questionStyle = TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500, color: Colors.white);
 
   final Trivia trivia;
-  final int currentIndex;
   final Function(String option) onOptionSelected;
 
-  QuestionPage({Key key, this.trivia, this.currentIndex = 0, this.onOptionSelected}) : super(key: key);
+  QuestionPage({Key key, this.trivia, this.onOptionSelected}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,53 +19,51 @@ class QuestionPage extends StatelessWidget {
       options.shuffle();
     }
 
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepPurple,
-          title: Text("Exit"),
-          elevation: 0,
-        ),
-        body: BackgroundPage(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
+    return BackgroundPage(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 32.0),
+            Row(
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Colors.white70,
-                      child: Text("${currentIndex + 1}"),
-                    ),
-                    SizedBox(width: 16.0),
-                    Expanded(
-                      child: Text(
-                        trivia.question,
-                        softWrap: true,
-                        style: _questionStyle,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20.0),
-                Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ...options.map((option) => RadioListTile(
-                            title: Text("$option"),
-                            value: option,
-                            groupValue: trivia.optionSelected,
-                            onChanged: (value) {
-                              onOptionSelected(value);
-                            },
-                          ))
-                    ],
+                Expanded(
+                  child: Text(
+                    trivia.question,
+                    softWrap: true,
+                    style: _questionStyle,
                   ),
                 ),
               ],
             ),
-          ),
-        ));
+            Spacer(),
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ...options.map((option) => Container(
+                        color: trivia.optionSelected == null
+                            ? Colors.white
+                            : option == trivia.correctAnswer ? Colors.lightGreen : Colors.white,
+                        child: RadioListTile(
+                          title: Text("$option"),
+                          value: option,
+                          groupValue: trivia.optionSelected,
+                          onChanged: (value) {
+                            if (trivia.optionSelected == null) {
+                              onOptionSelected(value);
+                            }
+                          },
+                        ),
+                      ))
+                ],
+              ),
+            ),
+            Spacer(),
+          ],
+        ),
+      ),
+    );
   }
 }
 

@@ -21,7 +21,7 @@ class TriviasLoaded extends TriviaState {
 class ShowTrivia extends TriviaState {
   final Trivia trivia;
 
-  ShowTrivia(this.trivia) : super([trivia.question]);
+  ShowTrivia(this.trivia) : super([trivia]);
 }
 
 class AnswerSelected extends TriviaState {
@@ -37,5 +37,5 @@ class ErrorState extends TriviaState {
 class GameFinished extends TriviaState {
   final int score;
 
-  GameFinished(this.score);
+  GameFinished(this.score): super([score]);
 }

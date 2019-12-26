@@ -17,6 +17,4 @@ class OptionSelectedEvent extends GameEvent {
 
 class NextQuestionEvent extends GameEvent {}
 
-class FinishGameEvent extends GameEvent {}
-
 class ExitGameEvent extends GameEvent {}

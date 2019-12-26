@@ -10,7 +10,7 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
   final GetTriviaList getTriviaList;
 
   List<Trivia> triviaList;
-  int currentTriviaIndex = 0;
+  int currentTriviaIndex = -1;
   int correctCount = 0;
 
   GameBoardBloc(this.getTriviaList);
@@ -24,12 +24,19 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
       yield LoadingState();
       yield* _failureOrTriviaList();
     } else if (event is NextQuestionEvent) {
-      yield ShowTrivia(triviaList.elementAt((currentTriviaIndex + 1) % triviaList.length));
+      currentTriviaIndex++;
+      if(currentTriviaIndex < triviaList.length) {
+        yield ShowTrivia(triviaList.elementAt((currentTriviaIndex) % triviaList.length));
+      } else {
+        yield GameFinished(_calculateScore());
+      }
     } else if (event is OptionSelectedEvent) {
-      triviaList.elementAt(currentTriviaIndex).optionSelected = event.answer;
+      final currentTrivia = triviaList.elementAt(currentTriviaIndex);
+      currentTrivia.optionSelected = event.answer;
+      if(event.answer == currentTrivia.correctAnswer) {
+        correctCount++;
+      }
       yield AnswerSelected(triviaList.elementAt(currentTriviaIndex));
-    } else if (event is FinishGameEvent) {
-      yield GameFinished(_calculateScore());
     } else if (event is ExitGameEvent) {
       yield InitialState();
     } else {
@@ -40,6 +47,8 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
   Stream<TriviaState> _failureOrTriviaList() async* {
     final result = await getTriviaList.call();
     if (result is Success<List<Trivia>>) {
+      currentTriviaIndex = -1;
+      correctCount = 0;
       triviaList = result.data;
       yield TriviasLoaded(result.data.first);
     } else {
@@ -55,6 +64,6 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
 
 
   int _calculateScore() {
-    return ((correctCount / triviaList.length) * 100).toInt();
+    return ((correctCount.toDouble() / triviaList.length.toDouble()) * 100).toInt();
   }
 }
