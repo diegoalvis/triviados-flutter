@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:triviados/presentation/widgets/PrimaryButton.dart';
+import 'package:triviados/presentation/widgets/primary_button.dart';
 import 'package:triviados/presentation/widgets/wave_clippers.dart';
 
-class HomeWidget extends StatelessWidget {
+class HomePage extends StatelessWidget {
   final Function onStart;
 
-  const HomeWidget({Key key, this.onStart}) : super(key: key);
+  const HomePage({Key key, this.onStart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class HomeWidget extends StatelessWidget {
                 child: PrimaryButton(onPressed: onStart, text: "Start"),
               )),
           SizedBox(
-            height: 20,
+            height: 16,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 32),

@@ -5,9 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:triviados/presentation/bloc/gameboard_bloc.dart';
 import 'package:triviados/presentation/bloc/gameboard_event.dart';
 import 'package:triviados/presentation/bloc/gameboard_state.dart';
-import 'package:triviados/presentation/widgets/PrimaryButton.dart';
-import 'package:triviados/presentation/widgets/home_widget.dart';
-import 'package:triviados/presentation/widgets/question_page.dart';
+import 'package:triviados/presentation/pages/home_page.dart';
+import 'package:triviados/presentation/pages/question_page.dart';
+import 'package:triviados/presentation/pages/results_page.dart';
+import 'package:triviados/presentation/widgets/primary_button.dart';
 
 class GameBoardPage extends StatefulWidget {
   GameBoardPage({Key key}) : super(key: key);
@@ -36,9 +37,7 @@ class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin 
         bloc: bloc,
         builder: (context, state) {
           if (state is InitialState) {
-            return HomeWidget(
-              onStart: () => bloc.add(PlayEvent()),
-            );
+            return HomePage(onStart: () => bloc.add(PlayEvent()));
           }
 
           if (state is LoadingState) {
@@ -53,7 +52,10 @@ class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin 
             return Column(
               children: <Widget>[
                 Expanded(
-                  child: QuestionPage(trivia: state.trivia, onOptionSelected: (option) => bloc.add(OptionSelectedEvent(option))),
+                  child: QuestionPage(
+                      trivia: state.trivia,
+                      onExitPressed: () => bloc.add(ExitGameEvent()),
+                      onOptionSelected: (option) => bloc.add(OptionSelectedEvent(option))),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: 48.0),
@@ -65,7 +67,8 @@ class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin 
           }
 
           if (state is GameFinished) {
-            return Center(child: Text("${state.score}/100"));
+            return ResultsPage(
+                onExitPressed: () => bloc.add(ExitGameEvent()), score: state.score, totalQuestions: state.totalQuestions);
           }
 
           return Center();

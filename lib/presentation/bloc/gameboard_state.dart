@@ -35,7 +35,7 @@ class ErrorState extends TriviaState {
 }
 
 class GameFinished extends TriviaState {
-  final int score;
+  final int score, totalQuestions;
 
-  GameFinished(this.score): super([score]);
+  GameFinished(this.score, this.totalQuestions): super([score]);
 }

@@ -25,15 +25,15 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
       yield* _failureOrTriviaList();
     } else if (event is NextQuestionEvent) {
       currentTriviaIndex++;
-      if(currentTriviaIndex < triviaList.length) {
+      if (currentTriviaIndex < triviaList.length) {
         yield ShowTrivia(triviaList.elementAt((currentTriviaIndex) % triviaList.length));
       } else {
-        yield GameFinished(_calculateScore());
+        yield GameFinished(_calculateScore(), triviaList.length);
       }
     } else if (event is OptionSelectedEvent) {
       final currentTrivia = triviaList.elementAt(currentTriviaIndex);
       currentTrivia.optionSelected = event.answer;
-      if(event.answer == currentTrivia.correctAnswer) {
+      if (event.answer == currentTrivia.correctAnswer) {
         correctCount++;
       }
       yield AnswerSelected(triviaList.elementAt(currentTriviaIndex));
@@ -61,7 +61,6 @@ class GameBoardBloc extends Bloc<GameEvent, TriviaState> {
       yield ErrorState(message: errorMessage);
     }
   }
-
 
   int _calculateScore() {
     return ((correctCount.toDouble() / triviaList.length.toDouble()) * 100).toInt();

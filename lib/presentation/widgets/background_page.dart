@@ -14,7 +14,7 @@ class BackgroundPage extends StatelessWidget {
         ClipPath(
           clipper: WaveClipper2(),
           child: Container(
-            decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0xffff3a5a), Color(0xfffe494d)])),
+            decoration: BoxDecoration(gradient: LinearGradient(colors: [Color(0xffff3a5a), Color(0xffff3a5a), Color(0xfffe494d)])),
             height: 200,
           ),
         ),
