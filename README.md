@@ -6,7 +6,7 @@ The app gets the info from the API of [Open Trivia Database](https://opentdb.com
 
 ## Getting Started
 
-The purpouse of this project is to have a practical example of the [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), [TDD](https://en.wikipedia.org/wiki/Test-driven_development) and some patterns like [BLoC](https://www.raywenderlich.com/4074597-getting-started-with-the-bloc-pattern).
+The purpouse of this project is to have a practical example of the [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), [TDD](https://en.wikipedia.org/wiki/Test-driven_development) and some patterns like [BLoC](https://www.didierboelens.com/2018/08/reactive-programming---streams---bloc).
 
 This project was inspired by [ResoCoder Flutter TDD Clean Architecture Course](https://resocoder.com/category/tutorials/flutter/tdd-clean-architecture/).
 
@@ -33,15 +33,37 @@ The project uses TDD paradigm based on this [practical example](https://resocode
 <img src="https://i0.wp.com/resocoder.com/wp-content/uploads/2019/08/Clean-Architecture-Flutter-Diagram.png?w=556&ssl=1" width="600" height="720">
 
 
+## Dependy injection
+
+
+
+
 ## Preview
 
-### Built With
+|         |         |
+| ------------- |-------------|
+| ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054435.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054449.png) |
+|  ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054451.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054465.png) |
 
+## Built using
+
+* [dependencies_flutter](https://pub.dev/packages/dependencies_flutter)
+* [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+* [bloc](https://pub.dev/packages/bloc)
+* [dio](https://pub.dev/packages/dio)
+* [http](https://pub.dev/packages/http)
+* [data_connection_checker](https://pub.dev/packages/data_connection_checker)
+* [shared_preferences](https://pub.dev/packages/shared_preferences)
+* [json_annotation](https://pub.dev/packages/json_annotation)
+* [build_runner](https://pub.dev/packages/build_runner)
+* [json_serializable](https://pub.dev/packages/json_serializable)
+* [bloc_test](https://pub.dev/packages/bloc_test)
 
 ## Running the tests
 
 The following tests was written.
 
+<img src="https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot%202020-01-03%20at%2013.29.14.png" width="700" height="330">
 
 ## Contributing
 
