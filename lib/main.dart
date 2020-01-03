@@ -2,7 +2,7 @@ import 'package:dependencies_flutter/dependencies_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:triviados/core/di/app_module.dart';
-import 'package:triviados/presentation/pages/gameboard_page.dart';
+import 'package:triviados/presentation/pages/splash_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             accentColor: Color(0xffff274d),
           ),
-          home: Scaffold(body: SafeArea(child: GameBoardPage())),
+          home: Scaffold(body: SafeArea(child: SplashPage())),
         ));
   }
 }
