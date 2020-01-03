@@ -26,8 +26,6 @@ This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.co
 
 <img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" width="500" height="340">
 
-The project uses TDD paradigm based on this [practical example](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/) applied to the particular use case of Bitcoin Prices
-
 ## Architecture Proposal
 
 <img src="https://i0.wp.com/resocoder.com/wp-content/uploads/2019/08/Clean-Architecture-Flutter-Diagram.png?w=556&ssl=1" width="600" height="720">
