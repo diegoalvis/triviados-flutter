@@ -75,7 +75,7 @@ void main() {
     );
 
     blocTest(
-      "Should emit correct answer state when the correct answer of the trivia is selected.",
+      "Should emit answer selected state when an answer of the trivia is selected.",
       build: () {
         gameBoardBloc.triviaList = triviaList;
         return gameBoardBloc;
