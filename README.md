@@ -30,18 +30,13 @@ This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.co
 
 <img src="https://i0.wp.com/resocoder.com/wp-content/uploads/2019/08/Clean-Architecture-Flutter-Diagram.png?w=556&ssl=1" width="600" height="720">
 
-
-## Dependy injection
-
-
-
+---
 
 ## Preview
 
-|         |         |
-| ------------- |-------------|
-| ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054435.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054449.png) |
-|  ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054451.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054465.png) |
+|    |    |    |
+| -- | -- | -- |
+| ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054435.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054449.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054465.png) |
 
 ## Built using
 
