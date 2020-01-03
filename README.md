@@ -15,14 +15,13 @@ If this is your first Flutter project:
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-
 ## Project Structure
 
 This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will devide the project into theses layers.
 
-* Presentation
-* Domain
-* Data
+- Presentation
+- Domain
+- Data
 
 <img src="https://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg" width="500" height="340">
 
@@ -40,17 +39,17 @@ This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.co
 
 ## Built using
 
-* [dependencies_flutter](https://pub.dev/packages/dependencies_flutter)
-* [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-* [bloc](https://pub.dev/packages/bloc)
-* [dio](https://pub.dev/packages/dio)
-* [http](https://pub.dev/packages/http)
-* [data_connection_checker](https://pub.dev/packages/data_connection_checker)
-* [shared_preferences](https://pub.dev/packages/shared_preferences)
-* [json_annotation](https://pub.dev/packages/json_annotation)
-* [build_runner](https://pub.dev/packages/build_runner)
-* [json_serializable](https://pub.dev/packages/json_serializable)
-* [bloc_test](https://pub.dev/packages/bloc_test)
+- [dependencies_flutter](https://pub.dev/packages/dependencies_flutter)
+- [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- [bloc](https://pub.dev/packages/bloc)
+- [dio](https://pub.dev/packages/dio)
+- [http](https://pub.dev/packages/http)
+- [data_connection_checker](https://pub.dev/packages/data_connection_checker)
+- [shared_preferences](https://pub.dev/packages/shared_preferences)
+- [json_annotation](https://pub.dev/packages/json_annotation)
+- [build_runner](https://pub.dev/packages/build_runner)
+- [json_serializable](https://pub.dev/packages/json_serializable)
+- [bloc_test](https://pub.dev/packages/bloc_test)
 
 ## Running the tests
 
@@ -61,15 +60,15 @@ The following tests was written.
 ## Contributing
 
 Pending
- 
-* Dynamic number of questions.
-* Select trivia category.
-* [Fix] Payload needs to be formatted to a standard UTF codification.
+
+- [ ] Dynamic number of questions.
+- [ ] Select trivia category.
+- [ ] Payload needs to be formatted to a standard UTF codification.
 
 ## Authors
 
-* *Diego Alvis* - Software Engineer [LinkedIn profile](https://www.linkedin.com/in/diego-alvis-palencia-7823a5130/)
+- *Diego Alvis* - Software Engineer [LinkedIn profile](https://www.linkedin.com/in/diego-alvis-palencia-7823a5130/)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License. See the [LICENSE.md](LICENSE.md) file for details.
