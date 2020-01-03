@@ -19,11 +19,13 @@ class GameBoardPage extends StatefulWidget {
 }
 
 class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin {
+  bool start = false;
   GameBoardBloc _bloc;
 
   @override
   void initState() {
     super.initState();
+    Future.delayed(Duration(milliseconds: 200), () => setState(() => start = true));
   }
 
   @override
@@ -36,62 +38,73 @@ class _GameBoardPageState extends State<GameBoardPage> with InjectorWidgetMixin 
   Widget buildWithInjector(BuildContext context, Injector injector) {
     _bloc = GameBoardBloc(injector.get());
     return Scaffold(
-      body: BlocBuilder(
-        bloc: _bloc,
-        builder: (context, state) {
-          if (state is InitialState) {
-            return HomePage(onStart: () => _bloc.add(PlayEvent()));
-          }
+      body: AnimatedContainer(
+        foregroundDecoration: start
+            ? BoxDecoration(gradient: LinearGradient(colors: [Colors.transparent, Colors.transparent]))
+            : BoxDecoration(gradient: LinearGradient(colors: [Color(0xffff3a5a), Color(0xfffe494d)])),
+        curve: Curves.fastOutSlowIn,
+        duration: Duration(milliseconds: 1500),
+        child: !start
+            ? Center()
+            : BlocBuilder(
+                bloc: _bloc,
+                builder: (context, state) {
+                  if (state is InitialState) {
+                    return HomePage(onStart: () => _bloc.add(PlayEvent()));
+                  }
 
-          if (state is LoadingState) {
-            return Center(child: CircularProgressIndicator());
-          }
+                  if (state is LoadingState) {
+                    return Center(child: CircularProgressIndicator());
+                  }
 
-          if (state is TriviasLoaded) {
-            _bloc.add(NextQuestionEvent());
-          }
+                  if (state is TriviasLoaded) {
+                    _bloc.add(NextQuestionEvent());
+                  }
 
-          if (state is AnswerSelected || state is ShowTrivia) {
-            return Column(
-              children: <Widget>[
-                Expanded(
-                  child: QuestionPage(
-                      trivia: state.trivia,
-                      onExitPressed: () => _showExitGameDialog(() => _bloc.add(ExitGameEvent())),
-                      onOptionSelected: (option) => _bloc.add(OptionSelectedEvent(option))),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 48.0),
-                  child: PrimaryButton(
-                      text: "Next", onPressed: state is AnswerSelected ? () => _bloc.add(NextQuestionEvent()) : null),
-                ),
-              ],
-            );
-          }
-
-          if (state is GameFinished) {
-            return ResultsPage(
-                onExitPressed: () => _bloc.add(ExitGameEvent()), score: state.score, totalQuestions: state.totalQuestions);
-          }
-
-          if (state is ErrorState) {
-            return BackgroundPage(
-              child: Column(
-                children: [
-                  Spacer(),
-                  Expanded(child: Center(child: Text("Somethign went wrong trying to get the game info..."))),
-                  Spacer(),
-                  Center(
-                      child: Padding(
+                  if (state is AnswerSelected || state is ShowTrivia) {
+                    return Column(
+                      children: <Widget>[
+                        Expanded(
+                          child: QuestionPage(
+                              trivia: state.trivia,
+                              onExitPressed: () => _showExitGameDialog(() => _bloc.add(ExitGameEvent())),
+                              onOptionSelected: (option) => _bloc.add(OptionSelectedEvent(option))),
+                        ),
+                        Padding(
                           padding: EdgeInsets.symmetric(vertical: 48.0),
-                          child: PrimaryButton(text: "Go to Home", onPressed: () => _bloc.add(ExitGameEvent()))))
-                ],
-              ),
-            );
-          }
+                          child: PrimaryButton(
+                              text: "Next", onPressed: state is AnswerSelected ? () => _bloc.add(NextQuestionEvent()) : null),
+                        ),
+                      ],
+                    );
+                  }
 
-          return Center();
-        },
+                  if (state is GameFinished) {
+                    return ResultsPage(
+                        onExitPressed: () => _bloc.add(ExitGameEvent()),
+                        score: state.score,
+                        totalQuestions: state.totalQuestions);
+                  }
+
+                  if (state is ErrorState) {
+                    return BackgroundPage(
+                      child: Column(
+                        children: [
+                          Spacer(),
+                          Expanded(child: Center(child: Text("Somethign went wrong trying to get the game info..."))),
+                          Spacer(),
+                          Center(
+                              child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 48.0),
+                                  child: PrimaryButton(text: "Go to Home", onPressed: () => _bloc.add(ExitGameEvent()))))
+                        ],
+                      ),
+                    );
+                  }
+
+                  return Center();
+                },
+              ),
       ),
     );
   }
