@@ -27,7 +27,7 @@ class ShowTrivia extends TriviaState {
 class AnswerSelected extends TriviaState {
   final Trivia trivia;
 
-  AnswerSelected(this.trivia): super([trivia.optionSelected]);
+  AnswerSelected(this.trivia): super([trivia]);
 }
 
 class ErrorState extends TriviaState {

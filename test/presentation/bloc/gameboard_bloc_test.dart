@@ -78,40 +78,39 @@ void main() {
       "Should emit answer selected state when an answer of the trivia is selected.",
       build: () {
         gameBoardBloc.triviaList = triviaList;
+        gameBoardBloc.currentTriviaIndex = 0;
         return gameBoardBloc;
       },
       act: (bloc) {
         final answer = triviaList.elementAt(bloc.currentTriviaIndex).correctAnswer;
         return bloc.add(OptionSelectedEvent(answer));
       },
-      expect: [InitialState(), AnswerSelected()],
+      expect: [InitialState(), AnswerSelected(triviaList[0])],
     );
 
     blocTest(
-      "Should emit incorrect answer state when the correct answer of the trivia is selected.",
+      "Should emit game finish state when all trivias have benn answered.",
       build: () {
         gameBoardBloc.triviaList = triviaList;
-        return gameBoardBloc;
-      },
-      act: (bloc) {
-        final answer = triviaList.elementAt(gameBoardBloc.currentTriviaIndex).incorrectAnswers.first;
-        return bloc.add(OptionSelectedEvent(answer));
-      },
-      expect: [InitialState(), IncorrectAnswer()],
-    );
-
-    blocTest(
-      "Should emit game finish state when the game has been finished and initial state after exit game.",
-      build: () {
-        gameBoardBloc.triviaList = triviaList;
+        gameBoardBloc.currentTriviaIndex = triviaList.length - 1;
         gameBoardBloc.correctCount = 3;
         return gameBoardBloc;
       },
       act: (bloc) {
-        bloc.add(FinishGameEvent());
+        return bloc.add(NextQuestionEvent());
+      },
+      expect: [InitialState(), GameFinished(((3 / triviaList.length) * 100).toInt(), triviaList.length)],
+    );
+
+    blocTest(
+      "Should emit initial state when exit game option is selected.",
+      build: () {
+        return gameBoardBloc;
+      },
+      act: (bloc) {
         return bloc.add(ExitGameEvent());
       },
-      expect: [InitialState(), GameFinished(((3 / triviaList.length) * 100).toInt()), InitialState()],
+      expect: [InitialState()],
     );
   });
 }
