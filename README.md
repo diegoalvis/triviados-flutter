@@ -1,8 +1,8 @@
 # Triviados
 
-Triviados is a [Flutter](https://flutter.dev/) application which consists in a basic trivia game with multiple options, unique correct answer and a fixed number of questions of 10.
+Triviados is a [Flutter](https://flutter.dev/) application which consists in a basic trivia game with multiple options and unique correct answer.
 
-The app gets the info from the API of [Open Trivia Database](https://opentdb.com).
+The app gets the info for the trivias from the API of [Open Trivia Database](https://opentdb.com).
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ The purpouse of this project is to have a practical example of the [Clean Arquit
 
 This project was inspired by [ResoCoder Flutter TDD Clean Architecture Course](https://resocoder.com/category/tutorials/flutter/tdd-clean-architecture/).
 
-If this is your first Flutter project:
+If this is your first Flutter project please take a look at this documentation first:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
