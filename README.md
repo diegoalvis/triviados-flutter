@@ -17,7 +17,7 @@ If this is your first Flutter project please take a look at this documentation f
 
 ## Project Structure
 
-This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will devide the project into theses layers.
+This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will devide the project into these layers.
 
 - Presentation
 - Domain
@@ -31,13 +31,15 @@ This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.co
 
 ---
 
-## Preview
+## App preview
 
 |    |    |    |
 | -- | -- | -- |
 | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054435.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054449.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054465.png) |
 
-## Built using
+## Built with
+
+The project uses the following dependencies:
 
 - [dependencies_flutter](https://pub.dev/packages/dependencies_flutter)
 - [flutter_bloc](https://pub.dev/packages/flutter_bloc)
@@ -53,17 +55,17 @@ This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.co
 
 ## Running the tests
 
-The following tests was written.
+The following unit tests were written.
 
 <img src="https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot%202020-01-03%20at%2013.29.14.png" width="700" height="330">
 
 ## Contributing
 
-Pending
+Pending task.
 
 - [ ] Dynamic number of questions.
 - [ ] Select trivia category.
-- [ ] Payload needs to be formatted to a standard UTF codification.
+- [ ] Format payload text (Standard UTF codification).
 
 ## Authors
 
