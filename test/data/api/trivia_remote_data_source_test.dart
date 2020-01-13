@@ -27,8 +27,7 @@ void main() {
 
   test('Should return List of Trivias when the response code is 200 (success)', () async {
     final mockResponse = File("test/utils/trivia_list.json").readAsStringSync();
-    final triviaList = await compute<List<Map<String, dynamic>>, List<TriviaModel>>(
-        parseTriviaList, (json.decode(mockResponse)["results"] as List).cast<Map<String, dynamic>>());
+    final triviaList = remoteDataSource.parseJsonResponse(json.decode(mockResponse)["results"]);
 
     when(dio.get(getTriviaPath, queryParameters: anyNamed("queryParameters")))
         .thenAnswer((_) async => Response(data: json.decode(mockResponse), statusCode: 200));

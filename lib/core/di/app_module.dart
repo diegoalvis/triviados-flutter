@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:dependencies/dependencies.dart';
 import 'package:dio/dio.dart';
@@ -15,7 +17,7 @@ class AppModule implements Module {
   @override
   void configure(Binder binder) {
     binder
-      // Third party
+      // Network
       ..bindSingleton(NetworkStatus(DataConnectionChecker()))
       ..bindSingleton(Dio(BaseOptions(baseUrl: "https://opentdb.com/api.php", connectTimeout: 5000, receiveTimeout: 3000)))
       ..bindLazySingleton((injector, params) async => await SharedPreferences.getInstance())

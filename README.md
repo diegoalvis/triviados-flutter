@@ -6,7 +6,7 @@ The app gets the info from the API of [Open Trivia Database](https://opentdb.com
 
 ## Getting Started
 
-The purpouse of this project is to have a practical example of the [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), [TDD](https://en.wikipedia.org/wiki/Test-driven_development) and some patterns like [BLoC](https://www.didierboelens.com/2018/08/reactive-programming---streams---bloc).
+The purpose of this project is to have a practical example of the [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html), [TDD](https://en.wikipedia.org/wiki/Test-driven_development) and some patterns like [BLoC](https://www.didierboelens.com/2018/08/reactive-programming---streams---bloc).
 
 This project was inspired by [ResoCoder Flutter TDD Clean Architecture Course](https://resocoder.com/category/tutorials/flutter/tdd-clean-architecture/).
 
@@ -17,7 +17,7 @@ If this is your first Flutter project:
 
 ## Project Structure
 
-This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will devide the project into theses layers.
+This project uses the concept of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will divide the project into theses layers.
 
 - Presentation
 - Domain
@@ -65,7 +65,7 @@ Pending
 - [ ] Select trivia category.
 - [ ] Payload needs to be formatted to a standard UTF codification.
 
-## Authors
+## Author
 
 - *Diego Alvis* - Software Engineer [LinkedIn profile](https://www.linkedin.com/in/diego-alvis-palencia-7823a5130/)
 

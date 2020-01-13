@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:triviados/core/error/exceptions.dart';
 import 'package:triviados/data/api/trivia_remote_data_source.dart';
 import 'package:triviados/data/models/trivia_model.dart';
@@ -13,21 +12,23 @@ class TriviaRemoteDataSourceImpl implements TriviaRemoteDataSource {
 
   @override
   Future<List<TriviaModel>> getTriviaList() async {
-    final response = await _dio.get(getTriviaPath, queryParameters: {"amount": 10, "type": "multiple"});
-
-    if (response.statusCode >= 200 && response.statusCode < 300) {
-      List<TriviaModel> data;
-      if (response.data["results"] != null) {
-        data = await compute<List<Map<String, dynamic>>, List<TriviaModel>>(
-            parseTriviaList, (response.data["results"] as List).cast<Map<String, dynamic>>());
+    try {
+      final response = await _dio.get(getTriviaPath, queryParameters: {"amount": 10, "type": "multiple"});
+      if (response.statusCode >= 200 && response.statusCode < 300) {
+        List<TriviaModel> triviaList;
+        if (response.data["results"] != null) {
+          triviaList = parseJsonResponse(response.data["results"]);
+        }
+        return triviaList;
+      } else {
+        throw ServerException();
       }
-      return data;
-    } else {
-      throw ServerException();
+    } catch (e) {
+      throw e;
     }
   }
-}
 
-// Isolate function to parse list
-List<TriviaModel> parseTriviaList(List<Map<String, dynamic>> json) =>
-    json.map((element) => TriviaModel.fromJson(element)).toList();
+  List<TriviaModel> parseJsonResponse(List data) {
+    return data.map((json) => TriviaModel.fromJson(json)).toList();
+  }
+}
