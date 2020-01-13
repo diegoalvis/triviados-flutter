@@ -17,11 +17,7 @@ If this is your first Flutter project please take a look at this documentation f
 
 ## Project Structure
 
-<<<<<<< HEAD
 This project uses the concept of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will divide the project into theses layers.
-=======
-This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will devide the project into these layers.
->>>>>>> 49c4d08a3ae4893ea552486696a0b8928d64f7fe
 
 - Presentation
 - Domain
