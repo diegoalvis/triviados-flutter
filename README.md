@@ -1,8 +1,8 @@
 # Triviados
 
-Triviados is a [Flutter](https://flutter.dev/) application which consists in a basic trivia game with multiple options, unique correct answer and a fixed number of questions of 10.
+Triviados is a [Flutter](https://flutter.dev/) application which consists in a basic trivia game with multiple options and unique correct answer.
 
-The app gets the info from the API of [Open Trivia Database](https://opentdb.com).
+The app gets the info for the trivias from the API of [Open Trivia Database](https://opentdb.com).
 
 ## Getting Started
 
@@ -10,14 +10,18 @@ The purpose of this project is to have a practical example of the [Clean Archite
 
 This project was inspired by [ResoCoder Flutter TDD Clean Architecture Course](https://resocoder.com/category/tutorials/flutter/tdd-clean-architecture/).
 
-If this is your first Flutter project:
+If this is your first Flutter project please take a look at this documentation first:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
 ## Project Structure
 
+<<<<<<< HEAD
 This project uses the concept of [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will divide the project into theses layers.
+=======
+This project uses the concept of [Clean Arquitecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which will devide the project into these layers.
+>>>>>>> 49c4d08a3ae4893ea552486696a0b8928d64f7fe
 
 - Presentation
 - Domain
@@ -31,13 +35,15 @@ This project uses the concept of [Clean Architecture](https://blog.cleancoder.co
 
 ---
 
-## Preview
+## App preview
 
 |    |    |    |
 | -- | -- | -- |
 | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054435.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054449.png) | ![alt text](https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot_1578054465.png) |
 
-## Built using
+## Built with
+
+The project uses the following dependencies:
 
 - [dependencies_flutter](https://pub.dev/packages/dependencies_flutter)
 - [flutter_bloc](https://pub.dev/packages/flutter_bloc)
@@ -53,17 +59,17 @@ This project uses the concept of [Clean Architecture](https://blog.cleancoder.co
 
 ## Running the tests
 
-The following tests was written.
+The following unit tests were written.
 
 <img src="https://raw.githubusercontent.com/diegoalvis/triviados_flutter/master/screens/Screenshot%202020-01-03%20at%2013.29.14.png" width="700" height="330">
 
 ## Contributing
 
-Pending
+Pending task.
 
 - [ ] Dynamic number of questions.
 - [ ] Select trivia category.
-- [ ] Payload needs to be formatted to a standard UTF codification.
+- [ ] Format payload text (Standard UTF codification).
 
 ## Author
 
